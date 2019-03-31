@@ -34,28 +34,33 @@ Create Read Update and Delete framework using JS
 	- React *(New!)*
 	- Redom *(New!)*
 	- Event animations *(New!)*
-	- One example of recursion!
+	- One example of recursion! *(Why?!)*
 
 #### Home page:
   - the front page is too busy. We're going to separate everything like we did with
   twiddler. The front page will be a single table with the only button being an empty cell.
 
  Rather than having some crap that looks like this:
+
 | key  | value |
-|--|--|
+|------|-------|
 | groceries | broccoli, chicken, rice |
 | motorcycle | oil, brake fluid, clutch fluid|
 
 We're going to make the key clickable so the front page is simply:
+
 | key |
-|--|
+| --- |
 |groceries|
 | motorcycle |
 | new key|
+
  - *new key* will be a cell on the bottom of the table that'll just be blank.
 
 And when the key is clicked it goes to another page
+
 | key: | *groceries* | save |
-| -- | --| -- |
+| ---- | ------------| ---- |
 | **description:** | *broccoli, chicken, rice* | **delete**
+
 And from there? *Who knows....*
