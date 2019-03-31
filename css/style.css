@@ -1,47 +1,41 @@
-/*
-- [ ] UI/UX considerations (how are we going to use this)
+body {
+  color: #4E4A26;
+  background-color: #1F1E15;
+}
 
-nice contrasting color pallet
-a form that doenst look like its from a circa 2001 webpage
 
-
-advanced content
-state changing styling
-*/
-
-/*
-	FLEXBOX CONTAINER
-	guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-*/
 .container {
 	display: flex;
 }
 
-/*
-	TABLE STYLING 
-*/
+
 table {
+	border: 1px solid #3A3724;
 	width: 400px;
 	margin-left: 30px;
 }
 
-table,
 td {
-    border: 1px solid #333;
+	border: 1px solid #3A3724;
+	background-color: #453918;
+	color: #946409 ;
+    
 }
 
-thead,
-tfoot {
-    background-color: #333;
+thead{
+    background-color: #946409;
     color: #fff;
 }
 
-/*
-	FORM STYLING 
-	TODO: validation checking styling 
-*/
+
 form.form {
 }
+
+form button {
+	color: #8D002D; 
+	border: 1px #FF6553 solid;
+}
+
 
 div.form {
 }
