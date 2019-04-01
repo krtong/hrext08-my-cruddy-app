@@ -1,102 +1,79 @@
+$(document).ready(function() {
+// well crud...
 
-// crud..
+//I. when the users first open the webpage they'll see a list of their previously made todos:
+  const loadLocalStorage = () => {
+    let todoHTML = ``, todoList = Object.keys(localStorage);
+    todoList.forEach((todo) => todoHTML +=`<li class="todo">${todo}</li>`);
+    $('div #todo-list').children('ul').children('li:first-child').html(todoHTML);
+  };
+  loadLocalStorage();
 
-//load local storage
-var loadLocalStorage = () => {
-  var htmlString = '<ul>';
-  var keys = Object.keys(localStorage);
-  for (var i = 0; i < keys.length; i++) {
-    htmlString  += `<li>${keys[i]}</li>`;
+//II. Refactoring The following
+//--A.Berry's baby functions
+//----1. update status label (not implemented atm)
+  const updateStatusLabel = (message) => {
+    $('#statusLabel').text(`Status: ${message}`);
   }
-  htmlString += `<li>new todo</li></ul>`;
-  $('#todo-list').html(htmlString)
-};
-// key: Object.keys(localStorage)[i]
-// value: localStorage[Object.keys(localStorage)[i]]
-
-//Berry's baby functions:
-var updateStatusLabel = function(message) {
-  $('#statusLabel').text('Status: ' + message);
-}
-///Create key in localStorage =>
-var createEntry = function(key, value) {
+//----2. Save key in localStorage =>
+const saveEntry = (key, value) => {
   return localStorage.setItem(key, value);
 }
-///Update key in localStorage =>
-var updateEntry = function(key, value) {
-  return localStorage.setItem(key, value);
-}
-
-///Delete key from localStorage =>
-var removeEntry = function(key) {
+//////3. Delete key from localStorage =>
+const deleteEntry = (key) => {
   return localStorage.removeItem(key);
 }
 
 
-// jQuery
-$(document).ready(function() {
-
-
-/// create button
-  loadLocalStorage();
+//III. If they haven't made any todos they'll click 'new todo' and make one.
+  $('#newTodo').click((event) => {
+    var key = event.target.innerHTML;
+    console.log("you clicked", key);
+  });
+//--A. They'll fill out title(key) and description(value).
+//----1. under construction.
+//--B. They'll either click save to make a new todo, or to overwrite their old one, then be brought back to the homepage.
+//----1. Create button and update need to be merged...
   $('#btn-create').on('click', function(e) {
-    var key = $('#key').val();
-    var value = $('#value').val();
-    var keyExists = localStorage.getItem(key) !== null;
+    let key = $('#key').val(), value = $('#value').val(), keyExists = localStorage.getItem(key) !== null;
+    if (keyExists) updateStatusLabel(`key already exists, please use update button instead! :D`);
+    else if (key === '') updateStatusLabel(`invalid input!`) ;
+    else saveEntry(key, value), updateStatusLabel(`key updated - ${key}`);
 
-    if (keyExists) {
-      updateStatusLabel('key already exists, please use update button instead! :D');
-    } else if (key === '') {
-      updateStatusLabel('invalid input!')
-    } else {
-      createEntry(key, value);
-      updateStatusLabel('key created - ' + key);
-    }
     loadLocalStorage();
   });
-
-///update button
   $('#btn-update').on('click', function(e) {
-    var key = $('#key').val();
-    var value = $('#value').val();
-    var existingValue = localStorage.getItem(key)
-    var keyExists = existingValue !== null;
+    let key = $('#key').val(), value = $('#value').val(), existingValue = localStorage.getItem(key), keyExists = existingValue !== null;
 
-    if (value === existingValue) {
-      updateStatusLabel('key not updated - that value already exists silly! xD')
-    } else if (keyExists) {
-      updateEntry(key, value);
-      updateStatusLabel('key updated - ' + key);
-    } else if (key === '') {
-      updateStatusLabel('invalid input!')
-    } else {
-      updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
-    }
+    if (value === existingValue) updateStatusLabel(`key not updated - that value already exists silly! xD`) ;
+    else if (keyExists) saveEntry(key, value), updateStatusLabel(`key updated - ${key}`);
+    else if (key === '') updateStatusLabel(`invalid input!`);
+    else updateStatusLabel(`The key, "${key}," doesn't exist, please use create button instead! :D`);
+
     loadLocalStorage();
   });
-
-///delete button.
+//--C. Or they'll click cancel
+//----under construction...
+//--D. Or they'll click delete
   $('#btn-delete').on('click', function(e) {
-    var key = $('#key').val();
-    var value = $('#value').val();
-    var keyExists = localStorage.getItem(key) !== null;
+    let key = $('#key').val(), value = $('#value').val(), keyExists = localStorage.getItem(key) !== null;
 
-    if (keyExists) {
-      removeEntry(key);
-      updateStatusLabel('key removed - ' + key);
-    } else if (key === '') {
-      updateStatusLabel('invalid input!')
-    } else {
-      updateStatusLabel('key doesn\'t exist, nothing removed. :|');
-    }
+    if (keyExists) deleteEntry(key), updateStatusLabel(`key removed - ${key}`);
+    else if (key === '') updateStatusLabel(`invalid input!`);
+    else updateStatusLabel(`key doesn't exist, nothing removed. :|`);
+
     loadLocalStorage();
   });
+
+//IV. Back on the homepage they can now click their todo to see description.
+  $('.todo').click((event) => {
+    var key = event.target.innerHTML;
+    console.log("you clicked", key);
+  });
+
 //end
 });
-
-
-/* Dave's Notes:
-
+/* Berry's Notes:
 When an input element is given a name, that name becomes a property of the owning form
 element's  HTMLFormElement.elements property. That means if you have an input whose name
 is set to guest and  another whose name is hat-size, the following code can be used:
@@ -104,7 +81,6 @@ is set to guest and  another whose name is hat-size, the following code can be u
 let form = document.querySelector("form");
 let guestName = form.elements.guest;
 let hatSize = form.elements["hat-size"];
-
 
 PAGE CONTENT STUFF
 
