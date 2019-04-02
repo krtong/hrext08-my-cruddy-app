@@ -1,39 +1,45 @@
 $(document).ready(function() {
-// well crud...
 
-//I. when the users first open the webpage they'll see a list of their previously made todos:
-  const loadLocalStorage = () => {
-    let todoHTML = ``, todoList = Object.keys(localStorage);
-    todoList.forEach((todo) => todoHTML +=`<li class="todo">${todo}</li>`);
-    $('div #todo-list').children('ul').children('li:first-child').html(todoHTML);
+  function loadLocalStorage() {
+    let todoList = Object.keys(localStorage), todoListHTML = ``, editButton = `<a href="#" class ="edit button">+</a>`;
+    for (let todo of todoList) {
+      todoListHTML +=`<li class="${todo} todo">${todo} ${editButton}`;
+      todoListHTML +=`<li class="${todo} description">${localStorage[todo]} ${editButton}`;
+    }
+    // todoListHTML += `<li id="newTodo">new todo</li>`
+    $('div > #todo-list').children('ul').children('li:first-child').html(todoListHTML);
   };
-  loadLocalStorage();
 
-//II. Refactoring The following
-//--A.Berry's baby functions
-//----1. update status label (not implemented atm)
-  const updateStatusLabel = (message) => {
+  loadLocalStorage();
+  $('.description, .edit.button').toggle()
+
+  function loadTodo() {
+    let todoList = Object.keys(localStorage), todoListHTML = ``;
+    for (let todo of todoList) todoListHTML +=`<li class="todo">${todo}</li>`;
+    $('div #todo-list').children('ul').children('li:first-child').html(todoListHTML);
+  };
+
+/*
+  function updateStatusLabel(message){
     $('#statusLabel').text(`Status: ${message}`);
   }
-//----2. Save key in localStorage =>
-const saveEntry = (key, value) => {
-  return localStorage.setItem(key, value);
-}
-//////3. Delete key from localStorage =>
-const deleteEntry = (key) => {
-  return localStorage.removeItem(key);
-}
 
 
-//III. If they haven't made any todos they'll click 'new todo' and make one.
-  $('#newTodo').click((event) => {
-    var key = event.target.innerHTML;
-    console.log("you clicked", key);
+  function saveEntry(key, value){
+    return localStorage.setItem(key, value);
+  }
+   
+  function deleteEntry(key){
+    return localStorage.removeItem(key);
+  }
+*/
+
+  $('#newTodo').click(function(event) {
+    var key = event.target.innerHTML, todoListHTML = `<li id="key">`;
+    console.log("you clicked", this);
+    $('div #todo-list').children('ul').children('li:first-child').html(todoListHTML);
   });
-//--A. They'll fill out title(key) and description(value).
-//----1. under construction.
-//--B. They'll either click save to make a new todo, or to overwrite their old one, then be brought back to the homepage.
-//----1. Create button and update need to be merged...
+/*
   $('#btn-create').on('click', function(e) {
     let key = $('#key').val(), value = $('#value').val(), keyExists = localStorage.getItem(key) !== null;
     if (keyExists) updateStatusLabel(`key already exists, please use update button instead! :D`);
@@ -52,9 +58,7 @@ const deleteEntry = (key) => {
 
     loadLocalStorage();
   });
-//--C. Or they'll click cancel
-//----under construction...
-//--D. Or they'll click delete
+
   $('#btn-delete').on('click', function(e) {
     let key = $('#key').val(), value = $('#value').val(), keyExists = localStorage.getItem(key) !== null;
 
@@ -65,29 +69,21 @@ const deleteEntry = (key) => {
     loadLocalStorage();
   });
 
-//IV. Back on the homepage they can now click their todo to see description.
-  $('.todo').click((event) => {
-    var key = event.target.innerHTML;
-    console.log("you clicked", key);
+*/
+  $('li.todo').click(function() {
+    console.log($('li.todo').val())
+    // var key = event.target.innerHTML;
+    // var value = localStorage[key];
+    //console.log("you clicked", key);
+    $(this).siblings('.todo').toggle(750);
+    $(this).next('.description').toggle(850);
+    $(this).children(' .edit.button').toggle(3000);
+    $(this).next('.description').children('.edit.button').toggle(3000)
+    //$('.edit.button').toggle(750);
   });
 
-//end
+  $('li.todo > .edit.button').click(function() {
+    console.log('fuck yeah');
+  })
+
 });
-/* Berry's Notes:
-When an input element is given a name, that name becomes a property of the owning form
-element's  HTMLFormElement.elements property. That means if you have an input whose name
-is set to guest and  another whose name is hat-size, the following code can be used:
-
-let form = document.querySelector("form");
-let guestName = form.elements.guest;
-let hatSize = form.elements["hat-size"];
-
-PAGE CONTENT STUFF
-
-something to update the table every time localStorage changes
-localStorage stuff
-https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-
-create new entry
-localStorage.setItem(key, value)
-*/

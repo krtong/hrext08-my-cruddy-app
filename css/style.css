@@ -1,6 +1,7 @@
 body {
   color: #4E4A26;
   background-color: #1F1E15;
+  font-family:  monospace;
 }
 
 
@@ -8,7 +9,13 @@ body {
 	display: flex;
 }
 
+li .todo:hover {
+	color:  #D7C200;
+	font-family: fantasy;
+;	transition: all 500ms;}
 
+
+/*
 table {
 	border: 1px solid #3A3724;
 	width: 400px;
@@ -54,4 +61,4 @@ label {
 
 button.button {
 	margin-right: 20px;
-}
+}*/
