@@ -1,10 +1,10 @@
 var loadLocalStorage = function () {
-	var keys = Object.keys(localStorage)
-	var htmlString = '';
-	for (var i = 0; i < keys.length; i++) {
-		htmlString += `<tr><td>${keys[i]}</td><td>${localStorage[keys[i]]}</tr></tr>`;
-	}
-	$('tbody').html(htmlString)
+  var keys = Object.keys(localStorage)
+  var htmlString = '';
+  for (var i = 0; i < keys.length; i++) {
+    htmlString += `<tr class="line"><td>${keys[i]}</td><td>${localStorage[keys[i]]}</tr></tr>`;
+  }
+  $('tbody').html(htmlString);
 };
 
 var updateStatusLabel = function(message) {
@@ -17,9 +17,11 @@ var updateStatusLabel = function(message) {
 $(document).ready(function () {
 	loadLocalStorage();
 
-	$('#btn-create').on('click', function(e) {
-		var key = $('#key').val();
-		var value = $('#value').val();
+//What to hide on the start.
+  $('#btn-update, #btn-delete, #btn-save' ).hide()
+
+	$('#btn-create').click(function(e) {
+		var key = $('#key').val(), value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
 
 		if (keyExists) {
@@ -30,13 +32,11 @@ $(document).ready(function () {
 			createEntry(key, value);
 			updateStatusLabel('key created - ' + key);
 		}
-
 		loadLocalStorage();
 	});
 
-	$('#btn-update').on('click', function(e) {
-		var key = $('#key').val();
-		var value = $('#value').val();
+	$('#btn-update').click(function(e) {
+		var key = $('#key').val(), value = $('#value').val();
 		var existingValue = localStorage.getItem(key)
 		var keyExists = existingValue !== null;
 
@@ -50,13 +50,15 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
 		}
-
+    $('#btn-update').hide();
+    $('#btn-create').show();
+    $('input#key').val('');
+    $('input#value').val('');
 		loadLocalStorage();
 	});
 
-	$('#btn-delete').on('click', function(e) {
-		var key = $('#key').val();
-		var value = $('#value').val();
+	$('#btn-delete').click(function(e) {
+		var key = $('#key').val(), value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
 
 		if (keyExists) {
@@ -67,9 +69,27 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('key doesn\'t exist, nothing removed. :|');
 		}
-
 		loadLocalStorage();
 	});
+
+  $('.line').click(function(event) {
+    var key;
+    var value;
+    if (event.target.nextSibling !== null) {
+      key = event.target.innerText;
+      value = event.target.nextSibling.innerText;
+    } else {
+      key = event.target.previousSibling.innerText;
+      value = event.target.innerText;
+    };
+    $('input#key').attr('value', key);
+    $('input#value').attr('value', value);
+    $('#btn-update, #btn-delete').show();
+    $('#btn-create').hide();
+
+  });
+
+
 
 });
 /*
