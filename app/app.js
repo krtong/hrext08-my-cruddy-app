@@ -2,7 +2,7 @@ var loadLocalStorage = function () {
   var todoList = Object.keys(localStorage)
   var htmlString = '';
   for (let todo of todoList) htmlString += `<tr class="line"><td>${todo}</td><td>${localStorage[todo]}</td></tr>`;
-  htmlString += `<tr  id="create-new"><td colspan="2">Create new key</td><td></td></tr>`;
+  htmlString += `<tr  id="create-new"><td colspan="2">Create new key</td></tr>`;
   $('tbody').html(htmlString);
   $('form').hide();
 };
