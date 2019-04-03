@@ -12,26 +12,11 @@
 </head>
 <body>
 	<div class="container">
-		<form action="" method="" class="form">
-			<div class="form">
-				<input type="text" name="key" id="key" placeholder="Enter key" value="" required>
-			</div>
-			<div class="form">
-				<input type="text" name="value" id="value" placeholder="Enter value" value="" required>
-			</div>
-			<div class="form">
-        <button class="button" id="btn-save" type="button">Save</button>
-				<button class="button" id="btn-create" type="button">Create</button>
-				<button class="button" id="btn-update" type="button">Update</button>
-				<button class="button" id="btn-delete" type="button">Delete</button>
-			</div>
-			<!-- clear button? -->
-		</form>
+
 		<table>
 			<thead>
 				<tr>
-					<th>Key</th>
-					<th>Value</th>
+					<th colspan="2">Todo List</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,6 +26,22 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<form action="" method="" class="form">
+			<div class="form">
+				<input type="text" name="key" id="key" placeholder="Enter key" maxlength="20" value="" required>
+			</div>
+			<div class="form">
+				<input type="text" name="value" id="value" placeholder="Enter value" maxlength="140" value="" required>
+			</div>
+			<div class="form">
+        <button class="button" id="btn-save" type="button">Save</button>
+				<button class="button" id="btn-create" type="button">Create</button>
+				<button class="button" id="btn-update" type="button">Update</button>
+				<button class="button" id="btn-delete" type="button">Delete</button>
+			</div>
+		</form>
+
 	</div>
 	<div id="statusLabel">Status:</div>
 

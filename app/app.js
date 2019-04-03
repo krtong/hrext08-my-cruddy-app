@@ -1,10 +1,10 @@
 var loadLocalStorage = function () {
-  var keys = Object.keys(localStorage)
+  var todoList = Object.keys(localStorage)
   var htmlString = '';
-  for (var i = 0; i < keys.length; i++) {
-    htmlString += `<tr class="line"><td>${keys[i]}</td><td>${localStorage[keys[i]]}</tr></tr>`;
-  }
+  for (let todo of todoList) htmlString += `<tr class="line"><td>${todo}</td><td>${localStorage[todo]}</td></tr>`;
+  htmlString += `<tr  id="create-new"><td colspan="2">Create new key</td><td></td></tr>`;
   $('tbody').html(htmlString);
+  $('form').hide();
 };
 
 var updateStatusLabel = function(message) {
@@ -18,8 +18,12 @@ $(document).ready(function () {
 	loadLocalStorage();
 
 //What to hide on the start.
-  $('#btn-update, #btn-delete, #btn-save' ).hide()
-
+  $('#btn-update, #btn-delete, #btn-save, form' ).hide()
+  $('#create-new').click(function(){
+    $('form').show();
+    $('#btn-update').hide();
+    $('#btn-create').show();
+  })
 	$('#btn-create').click(function(e) {
 		var key = $('#key').val(), value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
@@ -50,7 +54,7 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
 		}
-    $('#btn-update').hide();
+    $('form, #btn-update').hide();
     $('#btn-create').show();
     $('input#key').val('');
     $('input#value').val('');
@@ -82,6 +86,7 @@ $(document).ready(function () {
       key = event.target.previousSibling.innerText;
       value = event.target.innerText;
     };
+    $('form').show();
     $('input#key').attr('value', key);
     $('input#value').attr('value', value);
     $('#btn-update, #btn-delete').show();

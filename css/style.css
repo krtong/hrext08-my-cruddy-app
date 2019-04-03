@@ -10,34 +10,50 @@ state changing styling
 	FLEXBOX CONTAINER
 	guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 */
-.container {
-	display: flex;
-}
+body {
+	background: linear-gradient(to bottom right, rgb(54, 54, 54), rgb(54, 54, 54), rgb(32, 32, 32));
+  background-attachment: fixed;
+	font-style: normal; }
+  .container {
+  	display: flex;
+  	flex-direction: column; }
+
 
 /*
 	TABLE STYLING
 */
-table {
-	width: 400px;
-	margin-left: 30px;
-}
-
-table,
-td {
-    border: 1px solid #333;
-}
-
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
-}
+  table {
+		margin-top: 50px;
+		display: ;
+  	border-collapse: collapse;
+  	justify-content: ; }
+    th {
+	    align: flex;
+    	justify-content: flex-end;
+		  font-family: sans-serif;
+			font-variant: small-caps;
+		  color: rgba(255, 252, 166, 0.26);
+		  padding-bottom: 10px;}
+    td {
+    font-family: monospace;}
+      td:first-child {
+      	width: 50%;
+      	text-align: right;
+	      border-right: 2px solid rgba(226, 255, 31, 0.16);
+      	padding: 10px; }
+      td:nth-child(2) {
+			  font-style: italic;}
+        #create-new td {
+          text-align: center; }
 
 /*
 	FORM STYLING
 	TODO: validation checking styling
 */
-form.form {
+form{
+	display: flex;
+	align-content: center;
+	background-color: ;
 }
 
 div.form {
