@@ -13,37 +13,41 @@
 <body>
 	<div class="container">
 
-		<table>
-			<thead>
-				<tr>
-					<th colspan="2">Todo List</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>test key</td>
-					<td>test value</td>
-				</tr>
-			</tbody>
-		</table>
+	  	<table>
+				<div id="statusLabel"> If the buttons stop working you have to refresh the page. >:( </div>
+		  	<thead>
+		  		<tr>
+			  		<th colspan="2">Todo List</th>
+		  		</tr>
+	  		</thead>
+		  	<tbody>
+	  			<tr>
+		  			<td>test key</td>
+				  	<td>test value</td>
+			  	</tr>
+	  		</tbody>
+	  	</table>
 
-		<form action="" method="" class="form">
-			<div class="form">
-				<input type="text" name="key" id="key" placeholder="Enter key" maxlength="20" value="" required>
-			</div>
-			<div class="form">
-				<input type="text" name="value" id="value" placeholder="Enter value" maxlength="140" value="" required>
-			</div>
-			<div class="form">
-        <button class="button" id="btn-save" type="button">Save</button>
-				<button class="button" id="btn-create" type="button">Create</button>
-				<button class="button" id="btn-update" type="button">Update</button>
-				<button class="button" id="btn-delete" type="button">Delete</button>
-			</div>
-		</form>
+	  	<form action="" method="" class="form">
+	  		<div class="form">
+		  		<input type="text" name="key" id="key" placeholder="Enter key" maxlength="20" value="" required>
+		  	</div>
+		  	<div class="form">
+		  		<input type="text" name="value" id="value" placeholder="Enter value" maxlength="140" value="" required>
+		  	</div>
+        <div id="form-container">
+		  	  <div class="form">
+            <button class="button" id="btn-save" type="button">Save</button>
+		  	  	<button class="button" id="btn-create" type="button">Create</button>
+	  		  	<button class="button" id="btn-update" type="button">Update</button>
+		  	  	<button class="button" id="btn-delete" type="button">Delete</button>
+		    	</div>
+	    	</div>
+		  </form>
+			<div id="statusLabel"></div>
 
-	</div>
-	<div id="statusLabel">Status:</div>
+	  </div>
+
 
 	<script src="app/app.js"></script>
   <!--

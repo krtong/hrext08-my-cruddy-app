@@ -16,8 +16,11 @@ body {
 	font-style: normal;
   color: rgba(0, 0, 0, 0.5);}
   .container {
-  	display: flex;
-  	flex-direction: column; }
+		background-color: ;
+		display: flex;
+    justify-content: center ;
+    align-items: center ;
+	  flex-flow: column  ;}
 /*
 	TABLE STYLING
 */
@@ -27,13 +30,14 @@ body {
   	border-collapse: collapse;
   	justify-content: ; }
     th {
+			border-radius: 10px 10px 0px 0px;
+      -webkit-border-radius: 10px 10px 0px 0px;
 	    align: flex;
     	justify-content: flex-end;
 		  font-family: sans-serif;
 			font-variant: small-caps;
 			font-size: 1.5em;
 		  color: rgba(255, 252, 166, 0.26);
-			text-shadow: ;
 		  padding-bottom: 10px;
 		  padding-left: 3%;
 		  border-bottom: ;}
@@ -63,13 +67,24 @@ body {
 				font-size: .9em;
 			  border-right: none;
 			  padding-left: 4%;}
+			td#last {
+				-webkit-border-radius: 0px 0px 10px 10px;
+			}
 /*
 	FORM STYLING
 	TODO: validation checking styling
 */
+#form-container{
+	display:  ;
+
+}
   form{
-  	display: flex;
-  	align-content: center;
+  	display:  ;
+  	align-content:  ;
+		justify-content:  ;
+		padding: 15px;
+		flex-grow:  ;
+		flex-flow: ;
   	background-color: ;}
 		label, input {
       margin-bottom: 10px;
@@ -79,4 +94,11 @@ body {
       padding-right: 10px;
       width: 80px;}
     button.button {
-    	margin-right: 20px;}
+    	margin: 0 ;}
+
+#statusLabel {
+	display: flex;
+	justify-content: center;
+	font-family: monospace;
+	color: rgb(30, 64, 92);
+}

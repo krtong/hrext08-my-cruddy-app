@@ -2,9 +2,9 @@ var loadLocalStorage = function () {
   var todoList = Object.keys(localStorage)
   var htmlString = '';
   for (let todo of todoList) htmlString += `<tr class="line"><td>${todo}</td><td>${localStorage[todo]}</td></tr>`;
-  htmlString += `<tr  id="create-new"><td colspan="2">Create new key</td></tr>`;
+  htmlString += `<tr  id="create-new"><td id="last" colspan="2">Create new key</td></tr>`;
   $('tbody').html(htmlString);
-  $('form').hide();
+  $('form').slideUp();
 };
 
 var updateStatusLabel = function(message) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
 //What to hide on the start.
   $('#btn-update, #btn-delete, #btn-save, form' ).hide()
   $('#create-new').click(function(){
-    $('form').show();
+    $('form').slideDown();
     $('#btn-update').hide();
     $('#btn-create').show();
   })
@@ -54,7 +54,7 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
 		}
-    $('form, #btn-update').hide();
+    $('form, #btn-update').slideUp();
     $('#btn-create').show();
     $('input#key').val('');
     $('input#value').val('');
@@ -86,7 +86,7 @@ $(document).ready(function () {
       key = event.target.previousSibling.innerText;
       value = event.target.innerText;
     };
-    $('form').show();
+    $('form').slideDown();
     $('input#key').attr('value', key);
     $('input#value').attr('value', value);
     $('#btn-update, #btn-delete').show();
