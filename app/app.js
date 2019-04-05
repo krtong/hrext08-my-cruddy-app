@@ -21,8 +21,11 @@ $(document).ready(function () {
   $('#btn-update, #btn-delete, #btn-save, form' ).hide()
   $('#create-new').click(function(){
     $('form').slideDown();
-    $('#btn-update').hide();
+    $('#btn-update, #btn-delete').hide();
     $('#btn-create').show();
+    $('input#key').attr('value', '');
+    $('input#value').attr('value', '');
+
   })
 	$('#btn-create').click(function(e) {
 		var key = $('#key').val(), value = $('#value').val();
