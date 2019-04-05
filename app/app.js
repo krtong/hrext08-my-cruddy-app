@@ -44,12 +44,12 @@ $(document).ready(function () {
       }
       return hello;
     }
-    
+
 		if (keyExists) {
 			updateStatusLabel('key already exists, please use update button instead! :D');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
-    } else if (newPhoneWhoDis(key)) {
+    } else if (newPhoneWhoDis(key,value)) {
       $('body').css("background-image", `url("./img/newPhoneWhoDis.jpg")`);
       $('body').css("background-size", `contain`);
       createEntry(key, value);
