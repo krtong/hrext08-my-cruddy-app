@@ -22,12 +22,14 @@ body {
         border-radius : 10px 10px 0 0;
         color :  rgb(226 255 31 / 0.7);
         justify-content : flex-end;
-        font-family :  ;
+        font-family : helvetica, sans-serif;
         font-variant : ;
         font-size : 2em;
         padding : 15px 0px 10px 0px;
         padding-left : 3% }
       tr {
+
+
         background-color : rgb(176 159 63) }
         td {
           font-family : monospace }

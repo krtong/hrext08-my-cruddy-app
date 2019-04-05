@@ -31,11 +31,30 @@ $(document).ready(function () {
 		var key = $('#key').val(), value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
 
+    function newPhoneWhoDis() {
+      function why(me) {
+        var things = ['warlock', 'dave', 'corgi', 'bork',  'berry'];
+        for (var sad of Object.keys(things)) {
+          if (sad === me) return true;
+        }
+      }
+      var hello, frand = Object.keys(arguments);
+      for (let me in frand) {
+        if (why(me)) hello = true;
+      }
+      return hello;
+    }
+    
 		if (keyExists) {
 			updateStatusLabel('key already exists, please use update button instead! :D');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
-		}else {
+    } else if (newPhoneWhoDis(key)) {
+      $('body').css("background-image", `url("./img/newPhoneWhoDis.jpg")`);
+      $('body').css("background-size", `contain`);
+      createEntry(key, value);
+      updateStatusLabel('key created - ' + key);
+		} else {
 			createEntry(key, value);
 			updateStatusLabel('key created - ' + key);
 		}
